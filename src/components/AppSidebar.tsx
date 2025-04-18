@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, 
   Briefcase, 
@@ -21,8 +22,8 @@ type SidebarLinkProps = {
 
 const SidebarLink = ({ icon: Icon, label, href, active = false, collapsed }: SidebarLinkProps) => {
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       className={cn(
         "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
         active 
@@ -32,7 +33,7 @@ const SidebarLink = ({ icon: Icon, label, href, active = false, collapsed }: Sid
     >
       <Icon size={20} className={active ? "text-white" : "text-skillstrap-600"} />
       {!collapsed && <span>{label}</span>}
-    </a>
+    </Link>
   );
 };
 
@@ -42,6 +43,8 @@ type AppSidebarProps = {
 };
 
 export function AppSidebar({ collapsed, setCollapsed }: AppSidebarProps) {
+  const location = useLocation();
+  
   return (
     <div 
       className={cn(
@@ -65,31 +68,35 @@ export function AppSidebar({ collapsed, setCollapsed }: AppSidebarProps) {
           icon={LayoutDashboard} 
           label="Dashboard" 
           href="/" 
-          active={true} 
+          active={location.pathname === "/"} 
           collapsed={collapsed} 
         />
         <SidebarLink 
           icon={Briefcase} 
           label="My Gigs" 
           href="/gigs" 
+          active={location.pathname === "/gigs"} 
           collapsed={collapsed} 
         />
         <SidebarLink 
           icon={Award} 
           label="Credentials" 
           href="/credentials" 
+          active={location.pathname === "/credentials"} 
           collapsed={collapsed} 
         />
         <SidebarLink 
           icon={BookOpen} 
           label="Learn" 
           href="/learn" 
+          active={location.pathname === "/learn"} 
           collapsed={collapsed} 
         />
         <SidebarLink 
           icon={User} 
           label="Profile" 
           href="/profile" 
+          active={location.pathname === "/profile"} 
           collapsed={collapsed} 
         />
       </div>
