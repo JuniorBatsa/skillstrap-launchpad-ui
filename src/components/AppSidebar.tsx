@@ -67,8 +67,8 @@ export function AppSidebar({ collapsed, setCollapsed }: AppSidebarProps) {
         <SidebarLink 
           icon={LayoutDashboard} 
           label="Dashboard" 
-          href="/" 
-          active={location.pathname === "/"} 
+          href="/dashboard" 
+          active={location.pathname === "/dashboard"} 
           collapsed={collapsed} 
         />
         <SidebarLink 

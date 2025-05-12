@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChartLine, Github, Linkedin, Twitter, Users } from 'lucide-react';
@@ -11,7 +10,7 @@ const LandingPage = () => {
 
   const handleGetStarted = () => {
     if (isAuthenticated) {
-      navigate('/');
+      navigate('/dashboard');
     } else {
       navigate('/register');
     }
@@ -35,7 +34,7 @@ const LandingPage = () => {
           </div>
           <div className="flex items-center gap-2">
             {isAuthenticated ? (
-              <Button onClick={() => navigate('/')}>Go to Dashboard</Button>
+              <Button onClick={() => navigate('/dashboard')}>Go to Dashboard</Button>
             ) : (
               <>
                 <Button variant="outline" onClick={() => navigate('/login')}>Sign In</Button>
