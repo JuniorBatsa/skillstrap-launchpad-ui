@@ -1,39 +1,54 @@
-🔧 SkillStrap Login System — Developer Handoff
-🎯 Project Overview
-We’re building a dual-interface platform for Students and Startups/Businesses. Each user type logs in and accesses a distinct experience. The login page is the entry point.
+# 🔧 SkillStrap Login System
 
-Live Preview: https://preview--skillstrap-launchpad-ui.lovable.app
+## 🎯 Project Overview
 
-🧑‍💻 User Roles
-1. Students
-Register/login
+SkillStrap is a dual-interface platform for **Students** and **Startups/Businesses**. Each user type logs in and is routed to a distinct dashboard experience. This project includes the login and authentication system as well as basic role-based routing.
 
-Create a profile (name, skills, interests, resume, portfolio link)
+**Live Preview:** [SkillStrap UI Preview](https://preview--skillstrap-launchpad-ui.lovable.app)
 
-Browse or get matched with startup opportunities (later stage)
+---
 
-Possibly message/interact with businesses
+## 🧑‍💻 User Roles
 
-2. Startups/Businesses
-Register/login
+### 1. Students
+- Register/Login  
+- Create a profile (name, skills, interests, resume, portfolio link)  
+- Browse or get matched with startup opportunities *(future feature)*  
+- Possibly message/interact with businesses *(future feature)*  
 
-Create a company profile (company name, role, description)
+### 2. Startups/Businesses
+- Register/Login  
+- Create a company profile (company name, role, description)  
+- Post opportunities (projects, internships, gigs)  
+- View student profiles, possibly shortlist/contact *(future feature)*
 
-Post opportunities (project/internship/gig descriptions)
+---
 
-View student profiles, possibly shortlist/contact
+## 🔐 Authentication Flow
 
-🔐 Authentication Flow
-User Type Selection: Toggle or split between “Student” and “Startup” at login/register
+### User Type Selection
+- Provide a toggle or UI split for selecting **Student** or **Startup** at login/register.
 
-Auth Method:
+### Auth Method
+- Email + Password (required)  
+- Google/LinkedIn OAuth (preferred for future, optional in v1)
 
-Email + password (baseline)
+### Post-Login Routing
+- Students → `/dashboard/student`  
+- Businesses → `/dashboard/business`
 
-Google/LinkedIn OAuth preferred (optional for v1)
+---
 
-Post-Login Routing:
+## 🛠 Tech Notes
 
-Student → /dashboard/student
+- Role-based authentication and routing must be implemented.  
+- UI/UX should follow the styling and layout from the preview link.  
+- Mobile responsiveness is required.
 
-Business → /dashboard/business
+---
+
+## 📈 Stretch Features (Future Implementation)
+- Admin dashboard  
+- Messaging between students and businesses  
+- Multi-user company accounts  
+- Analytics and notifications systems
