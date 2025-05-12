@@ -8,6 +8,19 @@ type User = {
   name: string;
   email: string;
   userType: UserType;
+  image?: string;
+  bio?: string;
+  location?: string;
+  phone?: string;
+};
+
+type ProfileUpdateData = {
+  name: string;
+  email: string;
+  bio?: string;
+  location?: string;
+  phone?: string;
+  image?: string | null;
 };
 
 type AuthContextType = {
@@ -16,6 +29,7 @@ type AuthContextType = {
   login: (email: string, password: string, userType: UserType) => Promise<void>;
   register: (userData: any, userType: UserType) => Promise<void>;
   logout: () => void;
+  updateProfile: (profileData: ProfileUpdateData) => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -52,6 +66,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  // Update profile function
+  const updateProfile = async (profileData: ProfileUpdateData) => {
+    // Simulate API call
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        if (user) {
+          const updatedUser = {
+            ...user,
+            ...profileData
+          };
+          setUser(updatedUser);
+          console.log('Profile updated:', updatedUser);
+        }
+        resolve();
+      }, 1000);
+    });
+  };
+
   // Logout function
   const logout = () => {
     setUser(null);
@@ -64,7 +96,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isAuthenticated: !!user,
         login,
         register,
-        logout
+        logout,
+        updateProfile
       }}
     >
       {children}
