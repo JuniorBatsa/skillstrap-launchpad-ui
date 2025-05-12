@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, Bell, Menu, LogOut } from "lucide-react";
@@ -38,7 +37,7 @@ export function NavBar({ toggleSidebar, userName }: NavBarProps) {
       title: "Logged Out",
       description: "You have been successfully logged out.",
     });
-    navigate('/login');
+    navigate('/');
   };
 
   const handleLogin = () => {
@@ -46,6 +45,7 @@ export function NavBar({ toggleSidebar, userName }: NavBarProps) {
   };
 
   return (
+    
     <div className="flex h-14 items-center border-b px-4 justify-between gap-4 bg-white">
       <button 
         onClick={toggleSidebar} 
