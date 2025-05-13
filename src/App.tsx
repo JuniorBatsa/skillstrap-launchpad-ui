@@ -29,10 +29,21 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
+// Route to redirect based on authentication status
+const RootRoute = () => {
+  const { isAuthenticated } = useAuth();
+  
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
+  
+  return <LandingPage />;
+};
+
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<RootRoute />} />
       <Route path="/dashboard" element={<ProtectedRoute><Index /></ProtectedRoute>} />
       <Route path="/gigs" element={<ProtectedRoute><Gigs /></ProtectedRoute>} />
       <Route path="/credentials" element={<ProtectedRoute><Credentials /></ProtectedRoute>} />

@@ -52,8 +52,8 @@ const Login = () => {
         description: `Welcome back! Redirecting to ${userType} dashboard.`,
       });
 
-      // Redirect after successful login
-      navigate('/');
+      // Redirect after successful login - changing from '/' to '/dashboard'
+      navigate('/dashboard');
     } catch (error) {
       toast({
         title: "Login Failed",
