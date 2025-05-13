@@ -1,4 +1,3 @@
-
 import React from "react";
 import { 
   Layout, 
@@ -15,11 +14,13 @@ import { XpProgress } from "@/components/XpProgress";
 import { CourseNotification } from "@/components/CourseNotification";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function Dashboard() {
-  // Mock data for the user
+  const { user } = useAuth();
+  
+  // Mock data for the user (keeping level and XP data as mock)
   const userData = {
-    name: "Alex Johnson",
     level: 3,
     currentXp: 2750,
     levelThreshold: 5000,
@@ -91,7 +92,7 @@ export function Dashboard() {
     <div className="flex-1 space-y-8 p-6">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">
-          Welcome back, {userData.name}!
+          Welcome back, {user?.name || "User"}!
         </h1>
         <XpProgress 
           currentXp={userData.currentXp} 

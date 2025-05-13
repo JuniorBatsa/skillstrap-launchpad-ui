@@ -3,16 +3,17 @@ import React from "react";
 import { AppSidebar } from "@/components/AppSidebar";
 import { NavBar } from "@/components/NavBar";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useAuth } from "@/contexts/AuthContext";
 
 type PageLayoutProps = {
   children: React.ReactNode;
   title: string;
-  userName?: string;
 };
 
-export function PageLayout({ children, title, userName = "Alex Johnson" }: PageLayoutProps) {
+export function PageLayout({ children, title }: PageLayoutProps) {
   const isMobile = useIsMobile();
   const [sidebarOpen, setSidebarOpen] = React.useState(!isMobile);
+  const { user } = useAuth();
   
   React.useEffect(() => {
     setSidebarOpen(!isMobile);
@@ -27,7 +28,7 @@ export function PageLayout({ children, title, userName = "Alex Johnson" }: PageL
       {sidebarOpen && <AppSidebar collapsed={false} setCollapsed={() => {}} />}
       
       <div className="flex flex-col flex-1">
-        <NavBar toggleSidebar={toggleSidebar} userName={userName} />
+        <NavBar toggleSidebar={toggleSidebar} userName={user?.name || "User"} />
         
         <main className="flex-1 p-6">
           <h1 className="text-2xl font-bold mb-6">{title}</h1>

@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PageLayout } from "@/components/PageLayout";
 import { XpProgress } from "@/components/XpProgress";
 import { useAuth } from "@/contexts/AuthContext";
@@ -24,6 +23,21 @@ const Profile = () => {
     phone: user?.phone || '',
     image: user?.image || ''
   });
+  
+  // Update local state when user data changes
+  useEffect(() => {
+    if (user) {
+      setProfileData({
+        name: user.name || '',
+        email: user.email || '',
+        bio: user.bio || '',
+        location: user.location || '',
+        phone: user.phone || '',
+        image: user.image || ''
+      });
+    }
+  }, [user]);
+  
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(user?.image || null);
   
@@ -140,8 +154,8 @@ const Profile = () => {
                   />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold">{user?.name}</h2>
-                  <p className="text-gray-500">{user?.email}</p>
+                  <h2 className="text-2xl font-semibold">{profileData.name}</h2>
+                  <p className="text-gray-500">{profileData.email}</p>
                 </div>
               </div>
               <Button 
